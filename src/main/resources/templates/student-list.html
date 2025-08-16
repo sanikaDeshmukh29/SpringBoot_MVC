@@ -24,6 +24,7 @@
             <th>Phone</th>
             <th>Gender</th>
             <th>Discount</th>
+            <th>Skills</th>
         </tr>
         <!--    for(Student tempStudent: students)-->
         <tr th:each="tempStudent : ${students}">
@@ -36,6 +37,12 @@
             <!--            <td th:text="${tempStudent.prime ? '20% Off' : 'No Discount'}"></td>-->
             <td th:if="${tempStudent.prime == true}" >20 % discount</td>
             <td th:if="${tempStudent.prime == false}" >No discount</td>
+            <td>
+                <ul>
+                    <li th:each="skill : ${tempStudent.skills}" th:text = "${skill}"></li>
+
+                </ul>
+            </td>
         </tr>
     </table>
 </div>

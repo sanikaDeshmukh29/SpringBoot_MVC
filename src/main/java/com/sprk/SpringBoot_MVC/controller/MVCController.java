@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -46,6 +47,7 @@ public class MVCController {
         student.setPhone("+91 12345 12345");
         student.setGender("Male");
         student.setPrime(true);
+        student.setSkills(Arrays.asList("java","python"));
 
         students.add(student);
 
@@ -57,6 +59,8 @@ public class MVCController {
         student2.setPhone("+91 88888 12345");
         student2.setGender("Male");
         student2.setPrime(false);
+        student2.setSkills(Arrays.asList("c++","python"));
+
         students.add(student2);
 
         Student student3 = new Student();
@@ -67,6 +71,7 @@ public class MVCController {
         student3.setPhone("+91 11111 99999");
         student3.setGender("Female");
         student3.setPrime(true);
+        student3.setSkills(Arrays.asList("java","c"));
         students.add(student3);
 
         Student student4 = new Student();
@@ -77,9 +82,11 @@ public class MVCController {
         student4.setPhone("+91 12345 99999");
         student4.setGender("Female");
         student4.setPrime(false);
+        student4.setSkills(Arrays.asList("java","react"));
         students.add(student4);
         students.sort((s1,s2)->Integer.compare(s1.getRollNo(), s2.getRollNo()));
         model.addAttribute("students", students);
+
         return "student-list";
     }
 }
