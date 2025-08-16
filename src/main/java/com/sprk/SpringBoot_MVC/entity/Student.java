@@ -18,4 +18,6 @@ public class Student {
     private String gender;
 
     private boolean prime;
+
+    
 }
