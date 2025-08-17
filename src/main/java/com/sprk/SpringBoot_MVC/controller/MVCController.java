@@ -1,9 +1,13 @@
 package com.sprk.SpringBoot_MVC.controller;
 
 import com.sprk.SpringBoot_MVC.entity.Student;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -89,4 +93,26 @@ public class MVCController {
 
         return "student-list";
     }
+
+
+    @GetMapping("/showform")
+    public String showForm(){
+        return "student-form";
+    }
+
+    @PostMapping("/process")
+    public String processForm(@RequestParam(name = "first_name") String firstName, @RequestParam(name = "last_name") String lastName, @RequestParam(name = "email") String email, HttpSession session, RedirectAttributes redirectAttributes){
+        session.setAttribute("firstName", firstName);
+        session.setAttribute("lastName", lastName);
+        session.setAttribute("email", email);
+        redirectAttributes.addFlashAttribute("msg","Student Saved Successfully");
+        return "redirect:/confirm";
+    }
+
+    @GetMapping("/confirm")
+    public String confirm(){
+
+        return "student-confirmation";
+    }
+
 }
